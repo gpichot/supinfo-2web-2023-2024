@@ -1,33 +1,9 @@
-import {
-  createBrowserRouter,
-  Link,
-  Outlet,
-  RouterProvider,
-  useParams,
-} from "react-router-dom";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import "./App.css";
-import { PokemonForm } from "./PokemonForm";
-import { PokemonsMocks } from "./pokemons.mocks";
-import { PokemonCard } from "./PokemonCard";
-
-function Menu() {
-  return (
-    <div style={{ display: "flex", flexFlow: "row nowrap", gap: 10 }}>
-      <Link to="/">Accueil</Link>
-      <Link to="/contact">Contact</Link>
-      <Link to="/pokemons/new">Créer un pokémon</Link>
-    </div>
-  );
-}
-
-function Welcome() {
-  const params = useParams();
-  return (
-    <div>
-      <h1>Hello {params.nomDuDresseur}</h1>
-    </div>
-  );
-}
+import { PokemonForm } from "./components/PokemonForm";
+import { PokemonListPage } from "./pages/PokemonListPage";
+import { WelcomePage } from "./pages/WelcomePage";
+import { Menu } from "./components/Menu";
 
 const router = createBrowserRouter([
   {
@@ -49,13 +25,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: (
-          <div>
-            {PokemonsMocks.map((pokemon) => (
-              <PokemonCard pokemon={pokemon} />
-            ))}
-          </div>
-        ),
+        element: <PokemonListPage />,
       },
       {
         path: "/contact",
@@ -63,7 +33,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/welcome/:nomDuDresseur",
-        element: <Welcome />,
+        element: <WelcomePage />,
       },
       {
         path: "/pokemons/new",
