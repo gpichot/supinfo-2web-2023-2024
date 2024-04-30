@@ -3,6 +3,7 @@ import {
   Link,
   Outlet,
   RouterProvider,
+  useParams,
 } from "react-router-dom";
 import "./App.css";
 import { PokemonForm } from "./PokemonForm";
@@ -15,6 +16,15 @@ function Menu() {
       <Link to="/">Accueil</Link>
       <Link to="/contact">Contact</Link>
       <Link to="/pokemons/new">Créer un pokémon</Link>
+    </div>
+  );
+}
+
+function Welcome() {
+  const params = useParams();
+  return (
+    <div>
+      <h1>Hello {params.nomDuDresseur}</h1>
     </div>
   );
 }
@@ -50,6 +60,10 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: <div>Contact</div>,
+      },
+      {
+        path: "/welcome/:nomDuDresseur",
+        element: <Welcome />,
       },
       {
         path: "/pokemons/new",
