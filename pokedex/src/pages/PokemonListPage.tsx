@@ -17,9 +17,17 @@ export function PokemonListPage() {
   return (
     <div>
       {pokemonListQuery.isFetching && "Chargement en arrière plan"}
-      {pokemons?.results.map((pokemon) => (
-        <PokemonCard key={pokemon.id} pokemon={pokemon} />
-      ))}
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(3, 1fr)",
+          gridGap: 10,
+        }}
+      >
+        {pokemons?.results.map((pokemon) => (
+          <PokemonCard key={pokemon.id} pokemon={pokemon} />
+        ))}
+      </div>
     </div>
   );
 }
